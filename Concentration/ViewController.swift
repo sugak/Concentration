@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+  //Lazy позволяет не инициализировать переменную, пока к ней не обратятся или все остальное не инициализируется
+ lazy var game = Concentrarion(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
   
   var flipCount = 0  {
     didSet {
@@ -24,7 +26,8 @@ class ViewController: UIViewController {
   @IBAction func touchCard(_ sender: UIButton) {
     flipCount += 1
     if let cardNumber = cardButtons.index(of: sender) {
-      flipCard(withEmoji: emojiChoices[cardNumber], on: sender)
+      game.chooseCard(at: cardNumber)
+      
     }
     
   }
